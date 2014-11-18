@@ -1,0 +1,154 @@
+{% extends 'base2.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div id="blog_post">
+        <div class="container">
+
+        <form class="form-horizontal" role="form" method="POST" action="/panel/editaudios/buscar/"> {% csrf_token %}
+
+               <div class="form-group">
+                <label for="inputTitulo" class="col-sm-3 control-label">Titulo:</label>
+                <div class="col-sm-9">
+                  <input name="titulo" type="text" placeholder="Titulo" class="form-control" />
+                </div>
+              </div>
+                
+              <div class="form-group">
+                <label for="inputCategoria" class="col-sm-3 control-label">Fecha:</label>
+                <div class="col-sm-9">
+                  <input id="id_fecha" name="fecha" type="text"  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Buscar</button>
+                  <button type="button" class="btn btn-default" onClick="location.href = '/panel/editaudios/' " >Limpiar</button>
+                </div>
+              </div>
+
+        </form>
+
+        {% if menu.crearmedios == 'yes' %}
+            <a href="nuevoaudio/">
+                <button type="button" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-user"></span> Nuevo audio
+                </button>
+            </a>
+        {% endif %}
+
+            <p></p>
+
+            <table class="table table-hover">
+                <tr>
+                    <th>Titulo:</th>
+                    <th>Categoria:</th>
+                    <th>Descripcion:</th>
+                    <th>Audio:</th>
+                    <th>Fecha:</th>
+                    <th>Publicado por:</th>
+                    {% if menu.editarmedios == 'yes' %}
+                        <th>Editar:</th>
+                    {% endif %}
+                </tr>
+            {% for us in audio %}
+                <tr>
+                    <td>{{ us.titulo }}</td>
+                    <td>{{ us.categoria }}</td>
+                    <td>{{ us.descripcion }}</td>
+                    <td>
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm{{ us.id }}">Vista previa</button>
+
+<div class="modal fade bs-example-modal-sm{{ us.id }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+      <audio controls preload='false'>
+                          <source src="{{MEDIA_URL}}{{ us.urll }}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                       </audio> 
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    </div>
+  </div>
+</div>
+                                       
+                    </td>
+                    <td>{{ us.fechadecreacion | date:"d/m/Y" }}</td>
+                    <td>{{ us.usuario }}</td>
+                    {% if menu.editarmedios == 'yes' %}
+                        <td>
+                            <a href="editaudio/{{ us.id }}/"><img src="{% static 'img/edit.png' %}" WIDTH=25 HEIGHT=25 ></a>
+                        </td>
+                    {% endif %}
+                </tr>          
+            {% endfor %}
+                
+            </table>
+        </div>
+     </div>
+
+    <!-- starts footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row info">
+                <div class="col-md-6 residence">
+                    
+                </div>
+                <div class="col-md-5 touch">
+                   
+                </div>
+            </div>
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row social">
+                        <div class="col-md-12">
+                            <a href="#" class="facebook">
+                                <span class="socialicons ico1"></span>
+                                <span class="socialicons_h ico1h"></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="socialicons ico2"></span>
+                                <span class="socialicons_h ico2h"></span>
+                            </a>
+                            <a href="#" class="gplus">
+                                <span class="socialicons ico3"></span>
+                                <span class="socialicons_h ico3h"></span>
+                            </a>
+                            <a href="#" class="flickr">
+                                <span class="socialicons ico4"></span>
+                                <span class="socialicons_h ico4h"></span>
+                            </a>
+                            <a href="#" class="pinterest">
+                                <span class="socialicons ico5"></span>
+                                <span class="socialicons_h ico5h"></span>
+                            </a>
+                            <a href="#" class="dribble">
+                                <span class="socialicons ico6"></span>
+                                <span class="socialicons_h ico6h"></span>
+                            </a>
+                            <a href="#" class="behance">
+                                <span class="socialicons ico7"></span>
+                                <span class="socialicons_h ico7h"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            © 2013 emedios. All rights reserved.
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'base2.html' %}
+{% block head %}
+    <script type="text/javascript">
+        document.oncontextmenu = function(){return false;}
+    </script>
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <div id="blog_post">
+        <div class="container">
+
+            <p></p>
+
+            <table border="1">
+                
+                <tr>
+                    <td>
+                            <div class="col-sm-6 col-md-4">
+
+                                <div>
+                                <h5><span class="label label-primary">{{ video.categoria }}</span></h5><small>{{ video.fechadecreacion | date:"d/m/Y" }}</small>
+                                    <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="572" height="400"
+                                              poster=""
+                                              data-setup="{}">
+                                    <source src="{{MEDIA_URL}}{{ video.urll }}" type='video/mp4' />
+                                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                    </video>
+                                    
+                                </div>
+                            </div>
+                    </td>
+                    <td>
+                        {% if menu.descargarmedios == 'yes' %}
+                        <p><a href="{{MEDIA_URL}}{{ video.urll}}" download="{{ video.titulo}}" class="btn btn-primary" role="button">descargar</a></p>
+                        {% endif %}
+                        Publicado por: <span class="label label-primary">{{ video.usuario }}</span>
+
+                        <div class="caption">
+                        <h3>{{ video.titulo }}   </h3>
+                        <p>{{ video.descripcion }}</p>
+                        
+                        </div>
+                    </td>
+                    
+                </tr> 
+                
+            </table>
+
+            <div class="page-header">
+              <h1>Comentarios </h1>
+            </div>
+            <form class="form-horizontal" role="form" method="POST"> {% csrf_token %}
+
+               <div class="form-group">
+                <label for="inputMensaje" class="col-sm-3 control-label">Comentario:</label>
+                <div class="col-sm-9">
+                  {{ comentario_Form.mensaje }} 
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Publicar</button>
+                </div>
+              </div>
+
+            </form>
+            {{ categoria_Form.errors }} 
+
+
+
+
+            {% for us in comentario %}
+            <div class="media">
+              <a class="pull-left" href="#">
+               <img src="{% static 'img/coment.png' %}" class="media-object" WIDTH=45 HEIGHT=45 >
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading">{{ us.usuario }}</h4>  <span class="label label-primary">{{ us.fechadecreacion | date:"d/m/Y" }}</span>
+                {{ us.mensaje }}
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+     </div>
+
+
+
+    <!-- starts footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row info">
+                <div class="col-md-6 residence">
+                    
+                </div>
+                <div class="col-md-5 touch">
+                   
+                </div>
+            </div>
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row social">
+                        <div class="col-md-12">
+                            <a href="#" class="facebook">
+                                <span class="socialicons ico1"></span>
+                                <span class="socialicons_h ico1h"></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="socialicons ico2"></span>
+                                <span class="socialicons_h ico2h"></span>
+                            </a>
+                            <a href="#" class="gplus">
+                                <span class="socialicons ico3"></span>
+                                <span class="socialicons_h ico3h"></span>
+                            </a>
+                            <a href="#" class="flickr">
+                                <span class="socialicons ico4"></span>
+                                <span class="socialicons_h ico4h"></span>
+                            </a>
+                            <a href="#" class="pinterest">
+                                <span class="socialicons ico5"></span>
+                                <span class="socialicons_h ico5h"></span>
+                            </a>
+                            <a href="#" class="dribble">
+                                <span class="socialicons ico6"></span>
+                                <span class="socialicons_h ico6h"></span>
+                            </a>
+                            <a href="#" class="behance">
+                                <span class="socialicons ico7"></span>
+                                <span class="socialicons_h ico7h"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            © 2013 emedios. All rights reserved.
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}

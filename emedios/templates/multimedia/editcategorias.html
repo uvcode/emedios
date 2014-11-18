@@ -1,0 +1,94 @@
+{% extends 'base2.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div id="blog_post">
+        <div class="container">
+        {% if menu.crearcategoria == 'yes' %}
+            <a href="nuevacategoria/">
+                <button type="button" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-user"></span> Nueva categoria
+                </button>
+            </a>
+        {% endif %}
+            <p></p>
+
+            <table class="table table-hover">
+                <tr>
+                    <th>Nombre de categoria:</th>
+                    {% if menu.editarcategoria == 'yes' %}
+                    <th>Editar:</th>
+                    {% endif %}
+                </tr>
+            {% for us in categorias %}
+                <tr>
+                    <td>{{ us.titulo }}</td>
+                    {% if menu.editarcategoria == 'yes' %}
+                    <td>
+                        <a href="editcategoria/{{ us.id }}/"><img src="{% static 'img/edit.png' %}" WIDTH=25 HEIGHT=25 ></a> 
+                    </td>
+                    {% endif %}
+                </tr>          
+            {% endfor %}
+                
+            </table>
+        </div>
+     </div>
+
+    <!-- starts footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row info">
+                <div class="col-md-6 residence">
+                    
+                </div>
+                <div class="col-md-5 touch">
+                   
+                </div>
+            </div>
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row social">
+                        <div class="col-md-12">
+                            <a href="#" class="facebook">
+                                <span class="socialicons ico1"></span>
+                                <span class="socialicons_h ico1h"></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="socialicons ico2"></span>
+                                <span class="socialicons_h ico2h"></span>
+                            </a>
+                            <a href="#" class="gplus">
+                                <span class="socialicons ico3"></span>
+                                <span class="socialicons_h ico3h"></span>
+                            </a>
+                            <a href="#" class="flickr">
+                                <span class="socialicons ico4"></span>
+                                <span class="socialicons_h ico4h"></span>
+                            </a>
+                            <a href="#" class="pinterest">
+                                <span class="socialicons ico5"></span>
+                                <span class="socialicons_h ico5h"></span>
+                            </a>
+                            <a href="#" class="dribble">
+                                <span class="socialicons ico6"></span>
+                                <span class="socialicons_h ico6h"></span>
+                            </a>
+                            <a href="#" class="behance">
+                                <span class="socialicons ico7"></span>
+                                <span class="socialicons_h ico7h"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            © 2013 emedios. All rights reserved.
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}

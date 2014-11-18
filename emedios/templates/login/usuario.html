@@ -1,0 +1,95 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+    <div id="blog_post">
+        <div class="container">
+        </div>
+	 </div>
+
+    <!-- starts footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row info">
+            
+            <form role="form" action="" method="post">{% csrf_token %}
+
+                      <div class="form-group">
+                        <label for="name">Nombre de usuario</label>
+                        {{form.username}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="name">Nombre</label>
+                        {{form.first_name}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="name">Apellido</label>
+                        {{form.last_name}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="Email">Email</label>
+                        {{form.email}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="number">Contraseña</label>
+                        {{form.password1}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="company">Confirmar contraseña</label>
+                        {{form.password2}}
+                      </div>
+                      
+                      <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+                {{ form.errors }} 
+            </div>
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row social">
+                        <div class="col-md-12">
+                            <a href="#" class="facebook">
+                                <span class="socialicons ico1"></span>
+                                <span class="socialicons_h ico1h"></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="socialicons ico2"></span>
+                                <span class="socialicons_h ico2h"></span>
+                            </a>
+                            <a href="#" class="gplus">
+                                <span class="socialicons ico3"></span>
+                                <span class="socialicons_h ico3h"></span>
+                            </a>
+                            <a href="#" class="flickr">
+                                <span class="socialicons ico4"></span>
+                                <span class="socialicons_h ico4h"></span>
+                            </a>
+                            <a href="#" class="pinterest">
+                                <span class="socialicons ico5"></span>
+                                <span class="socialicons_h ico5h"></span>
+                            </a>
+                            <a href="#" class="dribble">
+                                <span class="socialicons ico6"></span>
+                                <span class="socialicons_h ico6h"></span>
+                            </a>
+                            <a href="#" class="behance">
+                                <span class="socialicons ico7"></span>
+                                <span class="socialicons_h ico7h"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            © 2013 emedios. All rights reserved.
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}

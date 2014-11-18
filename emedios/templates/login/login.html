@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div id="sign_in2">
+        <div class="container">
+            <div class="row login">  
+                <div class="col-sm-12 signin_box">
+                    <div class="box">
+                        <div class="box_cont">
+                            <div class="social">
+                                 <a href="#" class="circle twitter">
+                                </a>
+                            </div>
+
+                            <div class="form">
+                                <form method="POST"> {% csrf_token %}
+                                    <input name="username" type="text" placeholder="Usuario" class="form-control">
+                                    <input name="password" type="password" placeholder="Contraseña" class="form-control">
+                                    <input type="submit" value="Entrar">
+                                </form>
+
+                                {% if form.errors %}
+                                    <br><br><p>
+                                    Su usuario o su Contraseña son incorrectos. Por favor Intente nuevamente.
+                                    </p>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+{% endblock %}
+

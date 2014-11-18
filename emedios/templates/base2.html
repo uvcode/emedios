@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block menu %} 
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand"><strong>E medios</strong></a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/panel/">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MULTIMEDIA <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/panel/dvideos/">VIDEOS</a></li>
+                            <li><a href="/panel/dimagenes/">IMAGENES</a></li>
+                            <li><a href="/panel/daudio/">AUDIO</a></li>
+                        </ul>
+                    </li>
+                    {% if menu.emedio == 'yes' %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">EDITAR MULTIMEDIA <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/panel/editcategorias/">EDITAR CATEGORIAS</a></li>
+                                <li><a href="/panel/editvideos/">EDITAR VIDEOS</a></li>
+                                <li><a href="/panel/editimagenes/">EDITAR IMAGENES</a></li>
+                                <li><a href="/panel/editaudios/">EDITAR AUDIO</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    {% if menu.eusuario == 'yes' %}
+                            <li><a href="/panel/usuarios/">USUARIOS</a></li>
+                    {% else %}
+                    
+                        {% if menu.epermisousuarios == 'yes' %}
+                            <li><a href="/panel/usuarios/">USUARIOS</a></li>
+                        {% endif %}
+
+                    {% endif %}
+
+                    <li><a href="cerrar/" class="bold">SALIR</a></li>
+
+                            
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
